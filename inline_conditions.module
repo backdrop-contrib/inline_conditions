@@ -809,3 +809,14 @@ function inline_conditions_get_info_by_module($module = NULL) {
 
   return $filtered_conditions;
 }
+
+/**
+ * Options list callback for condition.
+ */
+function _inline_conditions_operator_options() {
+  return array(
+    '<' => t('lower than'),
+    '==' => t('equals'),
+    '>' => t('greater than'),
+  );
+}
