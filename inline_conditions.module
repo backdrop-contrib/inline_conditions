@@ -482,7 +482,7 @@ function inline_conditions_field_widget_form(&$form, &$form_state, $field, $inst
     // A condition has been selected, and a "configure" callback exists.
     if (!empty($item['condition_name']) && !empty($condition_info[$item['condition_name']]['callbacks']['configure'])) {
       $callback = $condition_info[$item['condition_name']]['callbacks']['configure'];
-      $element[$delta]['condition_settings'] = $callback($item['condition_settings']);
+      $element[$delta]['condition_settings'] = $callback($item['condition_settings'], $instance, $delta);
       $element[$delta]['#attributes'] = array('class' => array('container-inline'));
     }
 
@@ -699,7 +699,6 @@ function inline_conditions_build(RulesReactionRule $rule, $field_values) {
       }
 
       // No logical operator found, so we put the condition in the temp array.
-      // It will be added to next condition using a logical operator.
       $temp = $condition;
     }
 
@@ -711,7 +710,8 @@ function inline_conditions_build(RulesReactionRule $rule, $field_values) {
       $rule->condition($or);
     }
 
-    // If a condition is still present in the temp var, attach it to the rule.
+    // If a condition is still present in the temp var, attach it to the rule
+    // using an AND operator.
     if (isset($temp)) {
       $rule->condition($temp);
     }
