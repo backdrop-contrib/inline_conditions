@@ -421,10 +421,7 @@ function inline_conditions_field_widget_form(&$form, &$form_state, $field, $inst
 
   // Attach module cascade style sheet to inline_conditions_field_widget_form.
   $form['#attached']['css'][] = drupal_get_path('module', 'inline_conditions') . '/css/inline_conditions.css';
-  // Load rtl.css file if needed.
-  if ($GLOBALS['language']->direction == 1) {
-    $form['#attached']['css'][] = drupal_get_path('module', 'inline_conditions') . '/css/inline_conditions-rtl.css';
-  }
+
 
   // If "Add a new condition" button has been pressed.
   if (isset($form_state['triggering_element']['#condition_action'])) {
