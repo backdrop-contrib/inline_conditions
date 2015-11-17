@@ -34,7 +34,6 @@
 
 .inline-conditions-container .condition-wrapper .form-item label {
   display: inline-block;
-  width: 80px;
 }
 
 .inline-conditions-container .condition-wrapper .form-item .ajax-progress {
