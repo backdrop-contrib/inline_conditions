@@ -735,7 +735,19 @@ function inline_conditions_get_info($condition_name = NULL) {
         $condition_info += array(
           // Remember the providing module.
           'module' => $module,
+          'callbacks' => array(),
         );
+        // Provide default callbacks based on condition name when they are using
+        // the MODULE_CONDITION condition name's naming pattern.
+        $callback_prefix = $condition;
+        if (strpos($callback_prefix, $module . '_') !== 0) {
+          $callback_prefix = $module . '_' . $condition;
+        }
+        $condition_info['callbacks'] += array(
+          'configure' => $callback_prefix . '_configure',
+          'build' => $callback_prefix . '_build',
+        );
+
         $conditions[$condition] = $condition_info;
       }
     }
