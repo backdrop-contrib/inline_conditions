@@ -1,33 +1,128 @@
-/*
-Inline conditions main stylesheet.
-
-This file exposes the common style rules for the inline_conditions field widget and the way its children elements
-should be displayed.
-*/
-
-/* css rules for all widget types */
-
-/* Wrappers for select, checkbox, checkboxes and textfield elements are displayed inline. */
-#inline-conditions-inline_conditions .inline-conditions-settings-wrapper div.form-type-select,
-#inline-conditions-inline_conditions .inline-conditions-settings-wrapper div.form-type-checkbox,
-#inline-conditions-inline_conditions .inline-conditions-settings-wrapper div.form-type-checkboxes,
-#inline-conditions-inline_conditions .inline-conditions-settings-wrapper div.form-type-textfield {
-    display: inline-block;
+/**
+ * inline_conditions main css file.
+ */
+/**
+ * Discount conditions block.
+ */
+.inline-conditions-container .form-wrapper {
+  margin: 10px;
 }
 
-/* Labels inside wrappers are displayed inline. */
-#inline-conditions-inline_conditions .inline-conditions-settings-wrapper label {
-    display: inline;
+.inline-conditions-container .even,
+.inline-conditions-container .odd {
+  margin-top: 2px;
+  padding: 10px 5px;
 }
 
-/* Add space to direct children of the settings wrapper. */
-#inline-conditions-inline_conditions .inline-conditions-settings-wrapper > div {
-    padding: 2px;
-    margin: 0;
+.inline-conditions-container .odd {
+  background-color: #eee;
 }
 
-/* Make bigger the logical operators to make them even more clear */
-#inline-conditions-inline_conditions .inline-conditions-logic-operator {
-    font-size: 1.2em;
-    border: none;
+/**
+ * Condition area.
+ */
+.inline-conditions-container .condition-wrapper {
+  display: block;
+  position: relative;
 }
+[dir="ltr"] .inline-conditions-container .condition-wrapper {
+  float: left;
+}
+[dir="rtl"] .inline-conditions-container .condition-wrapper {
+  float: right;
+}
+
+.inline-conditions-container .condition-wrapper .form-item label {
+  display: inline-block;
+}
+
+.inline-conditions-container .condition-wrapper .form-item .ajax-progress {
+  position: absolute;
+}
+[dir="ltr"] .inline-conditions-container .condition-wrapper .form-item .ajax-progress {
+  left: 62px;
+}
+[dir="rtl"] .inline-conditions-container .condition-wrapper .form-item .ajax-progress {
+  right: 62px;
+}
+.inline-conditions-container .condition-wrapper .form-item .ajax-progress .message {
+  display: none;
+}
+
+.inline-conditions-container .condition-logic {
+  position: relative;
+}
+
+.inline-conditions-container .condition-logic select {
+  margin-right: 10px;
+}
+[dir="ltr"] .inline-conditions-container .condition-logic select {
+  float: left;
+}
+[dir="rtl"] .inline-conditions-container .condition-logic select {
+  float: right;
+}
+
+.inline-conditions-container .remove-condition {
+  position: relative;
+}
+.inline-conditions-container .remove-condition .form-submit {
+  margin: 0 10px;
+}
+[dir="ltr"] .inline-conditions-container .remove-condition .form-submit {
+  float: left;
+}
+[dir="rtl"] .inline-conditions-container .remove-condition .form-submit {
+  float: right;
+}
+[dir="ltr"] .inline-conditions-container .remove-condition .ajax-progress .message {
+  float: left;
+  padding-left: 5px;
+}
+[dir="rtl"] .inline-conditions-container .remove-condition .ajax-progress .message {
+  float: right;
+  padding-right: 5px;
+}
+
+.inline-conditions-container .form-item {
+  margin: 0;
+}
+
+.inline-conditions-container .form-submit {
+  margin: 0;
+}
+
+.inline-conditions-container .form-submit.add-new-condition {
+  margin-top: 10px;
+}
+
+.inline-conditions-container div.condition-instructions {
+  color: #6d6d6d;
+  font-style: italic;
+  display: block;
+  font-size: smaller;
+  /* Equal to ..inline-conditions-container .condition-wrapper .form-item label width+5px */
+}
+[dir="ltr"] .inline-conditions-container div.condition-instructions {
+  margin-left: 85px;
+}
+[dir="rtl"] .inline-conditions-container div.condition-instructions {
+  margin-right: 85px;
+}
+
+.inline-conditions-container .product-taxonomy .form-type-radio {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.inline-conditions-container .product-taxonomy .form-type-radio > label {
+  color: #6d6d6d;
+  font-style: italic;
+  font-size: smaller;
+}
+
+.commerce-discount-form .negate-condition input.form-checkbox + label::before {
+  top: inherit;
+}
+
+/*# sourceMappingURL=inline_conditions.css.map */
