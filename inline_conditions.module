@@ -341,7 +341,7 @@ function inline_conditions_entity_metadata_field_property_set($entity, $name, $v
  * @param array $field_values
  *   An array of values from an inline_conditions field.
  *
- * @see hook_inline_conditions_prebuild_alter()
+ * @see hook_inline_conditions_build_alter()
  */
 function inline_conditions_build(RulesReactionRule $rule, $field_values) {
   if (!empty($field_values)) {
