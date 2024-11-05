@@ -151,7 +151,7 @@ function inline_conditions_field_widget_form(&$form, &$form_state, $field, $inst
   // Ensure this .inline_conditions files are loaded when the form is rebuilt
   // from the cache.
   foreach (inline_conditions_get_info_by_module() as $module => $condition) {
-    $form_state['build_info']['files']["form_ic_$module"] = drupal_get_path('module', $module) . "/$module.inline_conditions.inc";
+    $form_state['build_info']['files']["form_ic_$module"] = backdrop_get_path('module', $module) . "/$module.inline_conditions.inc";
   }
 
   // Prepare a list of all possible conditions.
@@ -169,7 +169,7 @@ function inline_conditions_field_widget_form(&$form, &$form_state, $field, $inst
   ) + $element;
 
   // Attach module style sheet to widget form.
-  $form['#attached']['css'][] = drupal_get_path('module', 'inline_conditions') . '/css/inline_conditions.css';
+  $form['#attached']['css'][] = backdrop_get_path('module', 'inline_conditions') . '/css/inline_conditions.css';
 
   // If "Add a new condition" button has been pressed.
   if (isset($form_state['triggering_element']['#condition_action'])) {
@@ -348,9 +348,9 @@ function inline_conditions_field_widget_form(&$form, &$form_state, $field, $inst
  */
 function inline_conditions_field_widget_form_validate($element, &$form_state, $form) {
   // Remove action buttons values from the form state values.
-  $value = drupal_array_get_nested_value($form_state['values'], $element['#parents']);
+  $value = backdrop_array_get_nested_value($form_state['values'], $element['#parents']);
   $value = array_intersect_key($value, array_flip(array_filter(array_keys($value), 'is_numeric')));
-  drupal_array_set_nested_value($form_state['values'], $element['#parents'], $value, TRUE);
+  backdrop_array_set_nested_value($form_state['values'], $element['#parents'], $value, TRUE);
 }
 
 /**
@@ -366,7 +366,7 @@ function inline_conditions_field_widget_form_validate($element, &$form_state, $f
  */
 function inline_conditions_form_ajax_callback($form, &$form_state) {
   $element_parents = array_slice($form_state['triggering_element']['#array_parents'], 0, -2);
-  $element = drupal_array_get_nested_value($form, $element_parents);
+  $element = backdrop_array_get_nested_value($form, $element_parents);
 
   // Triggered when user selects a condition.
   if ($form_state['triggering_element']['#condition_action'] == 'select') {

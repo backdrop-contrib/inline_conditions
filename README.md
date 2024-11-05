@@ -1,9 +1,4 @@
-## CONTENTS OF THIS FILE
-
- * Description
-
-
-## DESCRIPTION
+# Inline Conditions
 
 It is common for a rule to be generated based on an entity (discounts, shipping
 rates, etc).
@@ -19,3 +14,4 @@ creating a field of the "inline_conditions" type on the entity, and later
 calling inline_conditions_build_rule() from the implementation of
 hook_default_rules_configuration(). See inline_conditions.api.php for more
 information.
+

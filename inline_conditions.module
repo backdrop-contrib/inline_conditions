@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Extends Drupal 7 with a new field type to manage rules conditions directly
+ * Extends Backdrop with a new field type to manage rules conditions directly
  * from a field.
  */
 
@@ -111,14 +111,14 @@ function theme_inline_conditions_table($variables) {
  */
 function inline_conditions_modules_enabled() {
   // New modules might offer additional inline conditions.
-  drupal_static_reset('inline_conditions_get_info');
+  backdrop_static_reset('inline_conditions_get_info');
 }
 
 /**
  * Implements hook_modules_disabled().
  */
 function inline_conditions_modules_disabled() {
-  drupal_static_reset('inline_conditions_get_info');
+  backdrop_static_reset('inline_conditions_get_info');
 }
 
 /**
@@ -170,8 +170,8 @@ function inline_conditions_autocomplete_callback($entity_type, $product_mode, $s
   else {
     // The user enters a comma-separated list of tags.
     // We only autocomplete the last tag.@
-    $tags_typed = drupal_explode_tags($string);
-    $tag_last = drupal_strtolower(array_pop($tags_typed));
+    $tags_typed = backdrop_explode_tags($string);
+    $tag_last = backdrop_strtolower(array_pop($tags_typed));
     if (!empty($tag_last)) {
       $prefix = count($tags_typed) ? implode(', ', $tags_typed) . ', ' : '';
     }
@@ -239,7 +239,7 @@ function inline_conditions_autocomplete_callback($entity_type, $product_mode, $s
     }
   }
 
-  drupal_json_output($matches);
+  backdrop_json_output($matches);
 }
 
 /**
@@ -256,7 +256,7 @@ function _inline_conditions_autocomplete_validate($element, &$form_state, $form)
   $value = array();
   // If a value was entered into the autocomplete...
   if (!empty($element['#value'])) {
-    $entities = drupal_explode_tags($element['#value']);
+    $entities = backdrop_explode_tags($element['#value']);
     $value = array();
     foreach ($entities as $entity) {
       // Take "label (entity id)', match the id from parenthesis.
@@ -324,7 +324,7 @@ function inline_conditions_entity_metadata_field_property_set($entity, $name, $v
   $entity->{$name}[$langcode] = $items;
   // Empty the static field language cache, so the field system picks up any
   // possible new languages.
-  drupal_static_reset('field_language');
+  backdrop_static_reset('field_language');
 }
 
 /**
@@ -348,7 +348,7 @@ function inline_conditions_build(RulesReactionRule $rule, $field_values) {
     // Loop over field values.
     foreach ($field_values as $delta => $value) {
       // Give a chance to others module to alter the current field value.
-      drupal_alter('inline_conditions_build', $value);
+      backdrop_alter('inline_conditions_build', $value);
 
       // Get the condition info.
       $info = inline_conditions_get_info($value['condition_name']);
@@ -434,7 +434,7 @@ function inline_conditions_build(RulesReactionRule $rule, $field_values) {
  *   An array of conditions.
  */
 function inline_conditions_get_info($condition_name = NULL) {
-  $conditions = &drupal_static(__FUNCTION__);
+  $conditions = &backdrop_static(__FUNCTION__);
 
   if (!isset($conditions)) {
     $conditions = array();
@@ -460,7 +460,7 @@ function inline_conditions_get_info($condition_name = NULL) {
       }
     }
 
-    drupal_alter('inline_conditions_info', $conditions);
+    backdrop_alter('inline_conditions_info', $conditions);
   }
 
   if (isset($condition_name)) {
