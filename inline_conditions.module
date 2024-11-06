@@ -278,7 +278,7 @@ function _inline_conditions_autocomplete_validate($element, &$form_state, $form)
 function inline_conditions_field_property_callback(&$info, $entity_type, $field, $instance, $field_type) {
 
   // Apply the default behavior.
-  entity_metadata_field_default_property_callback($info, $entity_type, $field, $instance, $field_type);
+  entity_plus_metadata_field_default_property_callback($info, $entity_type, $field, $instance, $field_type);
 
   // Alter both getter & setter callbacks.
   $property =& $info[$entity_type]['bundles'][$instance['bundle']]['properties'][$field['field_name']];
@@ -291,7 +291,7 @@ function inline_conditions_field_property_callback(&$info, $entity_type, $field,
  */
 function inline_conditions_entity_metadata_field_property_get($entity, array $options, $name, $entity_type, $info) {
   $field = field_info_field($name);
-  $langcode = entity_metadata_field_get_language($entity_type, $entity, $field, isset($options['language']) ? $options['language']->language : LANGUAGE_NONE, TRUE);
+  $langcode = entity_plus_metadata_field_get_language($entity_type, $entity, $field, isset($options['language']) ? $options['language']->language : LANGUAGE_NONE, TRUE);
   $values = array();
   if (isset($entity->{$name}[$langcode])) {
     foreach ($entity->{$name}[$langcode] as $delta => $rows) {
